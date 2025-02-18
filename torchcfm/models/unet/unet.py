@@ -861,6 +861,8 @@ class UNetModelWrapper(UNetModel):
         self,
         dim,
         num_channels,
+        in_channels,
+        out_channels,
         num_res_blocks,
         channel_mult=None,
         learn_sigma=False,
@@ -903,9 +905,9 @@ class UNetModelWrapper(UNetModel):
 
         return super().__init__(
             image_size=image_size,
-            in_channels=dim[0],
+            in_channels=in_channels, #dim[0],
             model_channels=num_channels,
-            out_channels=(dim[0] if not learn_sigma else dim[0] * 2),
+            out_channels= out_channels, #(dim[0] if not learn_sigma else dim[0] * 2),
             num_res_blocks=num_res_blocks,
             attention_resolutions=tuple(attention_ds),
             dropout=dropout,
